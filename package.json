@@ -1,15 +1,34 @@
 {
-  "name": "generator-basic-node",
+  "name": "@emilesalem/generator-basic-node",
   "version": "1.0.0",
-  "description": "bare minimum for a back office node service",
+  "description": "bare minimum for a node service",
   "files": [
     "generators"
   ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha --opts test/mocha.opts",
+    "tdd": "mocha --watch --opts test/mocha.opts"
+  },
   "keywords": [
     "yeoman-generator"
   ],
   "dependencies": {
     "generator-node": "^2.4.0",
     "yeoman-generator": "^2.0.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-eslint": "^4.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.1.0",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^1.7.0"
   }
 }

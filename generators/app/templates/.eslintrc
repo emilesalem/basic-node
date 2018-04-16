@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "extends" : [
+    "eslint:recommended",
+    "standard"
+  ],
+  "env"     : {
+    "node" : true,
+    "mocha": true
+  },
+  "rules": {
+    "max-len": [2, 120, 2],
+    "no-var": 2,
+    "no-console": 2,
+    "prefer-const": 2,
+    "object-curly-spacing": [2, "always"],
+    "newline-per-chained-call": 2
+  }
+}

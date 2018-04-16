@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  install:
+    docker:
+      - image: node:8
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: dependencies installation
+          command: yarn --pure-lockfile
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+  build:
+    docker:
+      - image: node:8
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run: |
+          yarn lint
+          yarn test
+  publish:
+    docker:
+      - image: node:8
+    steps:
+      - checkout   
+      - restore_cache:
+          key: deps-{{ checksum "yarn.lock" }}
+      - run: |
+         curl -fL https://getcli.jfrog.io | sh
+         ./jfrog rt config --url $ARTIFACTORY_URL --user $ARTIFACTORY_USER --apikey $ARTIFACTORY_APIKEY --interactive false
+         ./jfrog rt npmp npm-local --build-name=generator-basic-node --build-number=$CIRCLE_BUILD_NUM
+         ./jfrog rt bp generator-basic-node $CIRCLE_BUILD_NUM
+workflows:
+  version: 2
+  default:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+      - publish:
+          context: org-global
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
