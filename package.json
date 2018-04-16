@@ -1,0 +1,15 @@
+{
+  "name": "generator-basic-node",
+  "version": "1.0.0",
+  "description": "bare minimum for a back office node service",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "generator-node": "^2.4.0",
+    "yeoman-generator": "^2.0.4"
+  }
+}
