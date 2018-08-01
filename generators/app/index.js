@@ -77,7 +77,8 @@ class BasicNode extends Generator {
         'nodemon',
         'proxyquire',
         'sinon',
-        'sinon-chai'
+        'sinon-chai',
+        'mockery'
       ],
       { dev: true }
     )
